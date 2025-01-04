@@ -1,0 +1,9 @@
+.login-page {
+    display: flex;
+    flex-direction: column; // Căn theo cột (form trên, chữ dưới)
+    align-items: center; // Căn giữa theo chiều ngang
+    justify-content: center; // Căn giữa theo chiều dọc
+    min-height: 100vh; // Đảm bảo nội dung nằm giữa màn hình
+    background-color: #7c7a7a; // Màu nền nhẹ nhàng
+
+}
