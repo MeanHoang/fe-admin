@@ -38,9 +38,9 @@ const AdminList = () => {
                     return;
                 }
 
-                console.log("Follow searchTerm:", searchTerm);
+                //console.log("Follow searchTerm:", searchTerm);
 
-                // Gọi API để lấy dữ liệu
+                // Gọi API 
                 const data = await getAllAdmin(currentPage, 7, searchTerm);
 
                 // Cập nhật danh sách admin

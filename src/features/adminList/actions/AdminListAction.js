@@ -46,7 +46,8 @@ export const handleDeleteClick = async (id, currentPage, setAdmins) => {
     }
 }
 
-export const handleToggleStatusClick = async (id, adminStatus, currentPage, setAdmins) => {
+export const handleToggleStatusClick = async (id, adminStatus,
+    currentPage, setAdmins) => {
     try {
         const updatedAdmin = {
             id,

@@ -6,6 +6,7 @@ import PrivateRoutes from "./PrivateRoutes";
 import DashboardPage from "../pages/PrivatePage/Dashboard/DashboardPage";
 import ManageAdminPage from "../pages/PrivatePage/Admin/ManageAdminPage";
 import RegisterPage from "../pages/PrivatePage/Admin/RegisterPage";
+import ManageUserPage from "../pages/PrivatePage/User/ManageUserPage";
 
 const AppRoutes = () => {
     return (
@@ -17,6 +18,7 @@ const AppRoutes = () => {
             <Route element={<PrivateRoutes />}>
                 <Route path="/dashboard" element={<DashboardPage />} />
                 <Route path="/manage-admin" element={<ManageAdminPage />} />
+                <Route path="/manage-user" element={<ManageUserPage />} />
 
                 <Route path="/reg" element={<RegisterPage />} />
 

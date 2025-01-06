@@ -54,26 +54,9 @@ button {
     }
 }
 
-// Nút "Cập nhật"
-.update-button {
-    background-color: $primary-color;
 
-    &:hover {
-        background-color: $primary-hover-color;
-    }
-}
-
-// Nút "Xóa"
-.delete-button {
-    background-color: $danger-color;
-
-    &:hover {
-        background-color: $danger-hover-color;
-    }
-}
-
-// Nút "Lưu"
-.save-button {
+// Nút "Chi tiết"
+.detail-button {
     background-color: $success-color;
 
     &:hover {
