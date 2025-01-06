@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import { register } from "../services/regAPI";
 
 const RegisterForm = () => {
-
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [fullname, setFullname] = useState("");
@@ -30,7 +29,6 @@ const RegisterForm = () => {
     }
     return (
         <div>
-            <h1>Tạo tài khoản admin</h1>
             <form onSubmit={handleSubmit}>
                 <div className="form-group">
 

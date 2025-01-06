@@ -1,0 +1,27 @@
+$primary-color: #007bff;
+$secondary-color: #343a40;
+$font-family: 'Arial, sans-serif';
+$white-color: #ffffff;
+$icon-color: #505050;
+
+.dashboard-page {
+    display: flex;
+    min-height: 100vh;
+
+    .navbar {
+        box-shadow: 0 0 10px rgba(243, 107, 107, 0.1);
+
+        .hidden {
+            display: none !important;
+        }
+
+    }
+
+    .content {
+        flex: 1;
+        padding: 20px;
+        background-color: $white-color;
+        color: #343a40;
+        overflow: hidden;
+    }
+}

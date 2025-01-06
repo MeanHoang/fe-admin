@@ -1,9 +1,14 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { MdMenu } from "react-icons/md";
+
 import Navbar from "../../../components/NavBar";
 import './DashboardPage.scss';
 
 const DashboardPage = () => {
-    const [isNavbarVisible, setIsNavbarVisible] = useState(true);
+    const navigate = useNavigate();
+
+    const [navbarStatus, setNavbarStatus] = useState(true);
 
     useEffect(() => {
         const checkToken = async () => {
@@ -17,17 +22,23 @@ const DashboardPage = () => {
         checkToken();
     }, []);
 
-    const toggleNavbar = () => {
-        setIsNavbarVisible(!isNavbarVisible);
+    const gotoRegisterPage = () => {
+        navigate("/reg");
+    };
+
+    const handleToggleNavbar = () => {
+        setNavbarStatus(!navbarStatus);
     };
 
     return (
         <div className="dashboard-page">
-            <div className={`navbar ${!isNavbarVisible ? 'hidden' : ''}`}>
-                <Navbar />
+            <div className={`navbar ${navbarStatus ? "open" : "closed"}`}>
+                {navbarStatus && <Navbar />}
             </div>
             <div className="content">
-                <h1>Xin chào admin</h1>
+                <button className="toggle-navbar-btn" onClick={handleToggleNavbar}>
+                    <MdMenu size={24} />
+                </button>
             </div>
         </div>
     );

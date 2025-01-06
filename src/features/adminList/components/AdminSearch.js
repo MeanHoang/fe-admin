@@ -1,11 +1,15 @@
 import React from 'react';
+import './AdminSearch.scss';
 
-const AdminSearch = ({ }) => {
+const AdminSearch = ({
+    setSearchTerm,
+    searchTerm
+}) => {
     return (
         <div className="search-bar">
             <input
                 type="text"
-                placeholder="Search by username"
+                placeholder="Nhập tên tài khoản"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 className="search-input"

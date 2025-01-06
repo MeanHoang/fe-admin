@@ -1,0 +1,44 @@
+// Biến màu sắc và kích thước
+$primary-color: #007bff;
+$input-bg-color: #f9f9f9;
+$input-border-color: #ddd;
+$input-hover-border-color: #007bff;
+$text-color: #333;
+$placeholder-color: #aaa;
+$font-size: 14px;
+$padding: 10px;
+$border-radius: 4px;
+$box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+// Phong cách cho search bar
+.search-bar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+}
+
+// Phong cách cho ô input tìm kiếm
+.search-input {
+    width: 100%;
+    max-width: 400px;
+    padding: $padding;
+    font-size: $font-size;
+    border: 1px solid $input-border-color;
+    border-radius: $border-radius;
+    background-color: $input-bg-color;
+    color: $text-color;
+    transition: all 0.3s ease;
+    box-shadow: $box-shadow;
+
+    &::placeholder {
+        color: $placeholder-color;
+        font-style: italic;
+    }
+
+    &:focus {
+        outline: none;
+        border-color: $input-hover-border-color;
+        box-shadow: 0 0 6px rgba($primary-color, 0.5);
+    }
+}

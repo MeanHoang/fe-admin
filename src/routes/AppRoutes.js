@@ -5,7 +5,7 @@ import PrivateRoutes from "./PrivateRoutes";
 
 import DashboardPage from "../pages/PrivatePage/Dashboard/DashboardPage";
 import ManageAdminPage from "../pages/PrivatePage/Admin/ManageAdminPage";
-import RegisterForm from "../features/register/components/RegisterForm";
+import RegisterPage from "../pages/PrivatePage/Admin/RegisterPage";
 
 const AppRoutes = () => {
     return (
@@ -18,7 +18,7 @@ const AppRoutes = () => {
                 <Route path="/dashboard" element={<DashboardPage />} />
                 <Route path="/manage-admin" element={<ManageAdminPage />} />
 
-                <Route path="/reg" element={<RegisterForm />} />
+                <Route path="/reg" element={<RegisterPage />} />
 
             </Route>
         </Routes>

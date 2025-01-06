@@ -1,4 +1,5 @@
 import React from 'react';
+import './AdminRow.scss';
 
 const AdminRow = ({ admin, editingAdmin, setEditingAdmin,
     handleEditClickWrapper,
@@ -51,7 +52,17 @@ const AdminRow = ({ admin, editingAdmin, setEditingAdmin,
 
             <td>{admin.created_at}</td>
 
-            <td>{admin.is_active ? "Bật" : "Tắt"}</td>
+            {/* ToggleSwitch */}
+            <td>
+                <div
+                    className={`toggle-switch ${admin.is_active ? "active" : ""}`}
+                    onClick={() =>
+                        handleToggleStatusClickWrapper(admin.id, admin.is_active)
+                    }
+                >
+                    <div className="switch"></div>
+                </div>
+            </td>
 
             {/* Actions */}
             <td>
@@ -62,13 +73,6 @@ const AdminRow = ({ admin, editingAdmin, setEditingAdmin,
                 )}
 
                 <button className="delete-button" onClick={() => handleDeleteClickWrapper(admin.id)}>Xóa</button>
-
-                <button
-                    className={`toggle-status-button ${admin.is_active ? 'active' : 'inactive'}`}
-                    onClick={() => handleToggleStatusClickWrapper(admin.id, admin.is_active)}
-                >
-                    {admin.is_active ? "Tắt" : "Bật"}
-                </button>
 
                 <button className="reset-button" onClick={() => handleResetPassClickWrapper(admin.id)}>Đặt lại</button>
 

@@ -15,6 +15,7 @@ import {
 import './AdminList.scss';
 import Pagination from "../../../components/Pagination";
 import AdminRow from "./AdminRow";
+import AdminSearch from "./AdminSearch";
 
 const AdminList = () => {
     const [admins, setAdmins] = useState([]);
@@ -24,6 +25,7 @@ const AdminList = () => {
     const [error, setError] = useState("");
 
     const [editingAdmin, setEditingAdmin] = useState(null);
+    const [searchTerm, setSearchTerm] = useState('');
 
     useEffect(() => {
         const fetchAdmins = async () => {
@@ -36,29 +38,39 @@ const AdminList = () => {
                     return;
                 }
 
-                const data = await getAllAdmin(currentPage);
-                setAdmins(data.admins);
-                //1 trang 7 admin
-                const total = data.total;
-                setTotalPages(Math.ceil(total / 7));
-                console.log("Check total page th: ", totalPages);
+                console.log("Follow searchTerm:", searchTerm);
 
+                // Gọi API để lấy dữ liệu
+                const data = await getAllAdmin(currentPage, 7, searchTerm);
+
+                // Cập nhật danh sách admin
+                setAdmins(data.admins);
+
+                // Tính toán tổng số trang
+                const total = data.total; // Giả sử `total` là tổng số admin
+                const pages = Math.ceil(total / 7); // 7 admin mỗi trang
+                setTotalPages(pages);
+
+                console.log("Check total page th: ", pages);
                 console.log("Check this page th: ", currentPage);
 
+                // Điều chỉnh `currentPage` nếu vượt quá giới hạn
                 if (currentPage < 1) {
                     setCurrentPage(1);
-                } else if (currentPage > totalPages) {
-                    setCurrentPage(totalPages);
+                } else if (currentPage > pages) {
+                    setCurrentPage(pages);
                 }
+
                 setLoading(false);
             } catch (error) {
-                setError(error.respone?.data?.message);
+                // Xử lý lỗi
+                setError(error.response?.data?.message || "Đã xảy ra lỗi khi tải dữ liệu.");
                 setLoading(false);
             }
         };
 
         fetchAdmins();
-    }, [currentPage]);
+    }, [currentPage, searchTerm]);
 
 
     const handleEditClickWrapper = (admin) => {
@@ -114,17 +126,21 @@ const AdminList = () => {
 
     return (
         <div>
-            <h1>Danh sách Admin</h1>
+            <h2>Tài khoản quản trị viên</h2>
+            <AdminSearch
+                searchTerm={searchTerm}
+                setSearchTerm={setSearchTerm}
+            />
             <table>
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Username</th>
-                        <th>Password</th>
-                        <th>Full Name</th>
-                        <th>Created at</th>
-                        <th>Status</th>
-                        <th>Action</th>
+                        <th>Tên tài khoản</th>
+                        <th>Mật khẩu</th>
+                        <th>Họ và tên</th>
+                        <th>Ngày tạo</th>
+                        <th>Quyền truy cập</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
