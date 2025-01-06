@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import Navbar from "../../../components/NavBar";
-import './DashboardPage.scss';
+import './ManageAdminPage.scss';
+import AdminList from "../../../features/adminList/components/AdminList";
 
-const DashboardPage = () => {
+const ManageAdminPage = () => {
     const [isNavbarVisible, setIsNavbarVisible] = useState(true);
 
     useEffect(() => {
@@ -27,10 +28,10 @@ const DashboardPage = () => {
                 <Navbar />
             </div>
             <div className="content">
-                <h1>Xin chào admin</h1>
+                <AdminList />
             </div>
         </div>
     );
 };
 
-export default DashboardPage;
+export default ManageAdminPage;

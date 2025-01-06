@@ -1,60 +1,68 @@
-$primary-color: #007bff;
-$secondary-color: #343a40;
-$font-family: 'Arial, sans-serif';
-$white-color: #ffffff;
-$icon-color: #505050;
+$color-primary: #212631; // Màu nền chính
+$color-secondary: #34495e; // Màu nền phụ
+$color-hover: #3b4b5a; // Màu nền khi hover
+$color-text: #ecf0f1; // Màu chữ
+$color-text-muted: #bdc3c7; // Màu chữ mờ
+
+$font-family: 'Arial', sans-serif; // Font chính
+$font-size-base: 15px; // Kích thước font cơ bản
+$font-size-small: 14px; // Font nhỏ
+$font-size-large: 23px; // Font lớn icon
+
+$padding-base: 20px; // Khoảng cách padding cơ bản
+$padding-small: 10px; // Padding nhỏ
+$margin-base: 10px; // Khoảng cách margin cơ bản
+
+$box-shadow-light: 2px 0 5px rgba(0, 0, 0, 0.1); // Bóng nhẹ
 
 .navbar {
-    background-color: $white-color;
-    color: #343a40;
-    padding: 1rem;
-    width: 200px;
-    height: 100vh;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 250px;
+    height: 100vh;
+    background-color: $color-primary;
+    color: $color-text;
+    box-shadow: $box-shadow-light;
 
     .navbar-logo {
-        margin-bottom: 1rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 10px;
+        border: 1px solid rgba(226, 200, 200, 0.1);
 
         img {
-            width: 100%;
+            max-width: 80%;
+            height: auto;
         }
     }
 
     ul {
-        list-style-type: none;
+        list-style: none;
         padding: 0;
+        margin: 0;
 
         li {
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-            font-size: 16px;
-
-            &:hover {
-                background-color: #797979;
-            }
+            width: 100%;
 
             a {
                 display: flex;
                 align-items: center;
-                color: #757575;
+                padding: $padding-base;
                 text-decoration: none;
-                padding: 10px;
-                border-radius: 4px;
-
-                font-family: 'Lato', sans-serif;
+                color: $color-text;
+                font-family: $font-family;
+                font-size: $font-size-base;
+                font-weight: 100;
+                transition: background-color 0.3s ease;
 
                 &:hover {
-                    color: rgb(0, 0, 0);
+                    background-color: $color-hover;
                 }
 
                 .icon {
-                    margin-right: 15px;
-                    color: #292929;
-                    font-size: 20px;
+                    margin-right: $padding-small;
+                    font-size: $font-size-large;
                 }
             }
 
@@ -64,39 +72,29 @@ $icon-color: #505050;
                 .submenu {
                     display: none;
                     position: absolute;
-                    background-color: $white-color;
-                    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
                     list-style-type: none;
                     padding: 0;
                     margin: 0;
                     border-radius: 4px;
                     width: 200px;
+                    background-color: $color-primary;
+                    box-shadow: $box-shadow-light;
 
                     li {
-                        margin: 0;
-                        padding: 5px 0;
-
-                        &:hover {
-                            background-color: #797979;
-                        }
-
                         a {
-                            padding: 5px 15px;
+                            padding: $padding-small;
+                            font-size: $font-size-small;
 
                             &:hover {
-                                color: black;
+                                background-color: $color-hover;
                             }
 
-                            .icon {
-                                margin-right: 10px;
-                                color: #424242;
-                                font-size: 18px;
-                            }
+
                         }
                     }
                 }
 
-                &:hover .submenu {
+                &:hover ul.submenu {
                     display: block;
                     left: 100%;
                     top: 0;

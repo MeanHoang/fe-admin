@@ -4,7 +4,7 @@ import PublicRoutes from "./PublicRoutes";
 import PrivateRoutes from "./PrivateRoutes";
 
 import DashboardPage from "../pages/PrivatePage/Dashboard/DashboardPage";
-import AdminList from "../features/adminList/components/AdminList";
+import ManageAdminPage from "../pages/PrivatePage/Admin/ManageAdminPage";
 import RegisterForm from "../features/register/components/RegisterForm";
 
 const AppRoutes = () => {
@@ -16,7 +16,7 @@ const AppRoutes = () => {
             {/* Route bảo vệ */}
             <Route element={<PrivateRoutes />}>
                 <Route path="/dashboard" element={<DashboardPage />} />
-                <Route path="/manage-admin" element={<AdminList />} />
+                <Route path="/manage-admin" element={<ManageAdminPage />} />
 
                 <Route path="/reg" element={<RegisterForm />} />
 
