@@ -6,18 +6,16 @@ import { getAllAdmin } from "../services/gettAllAdmin";
 import { deleteAdmin } from '../services/deleteAdmin';
 import { resetPassword } from '../services/resetPassword';
 
-
-
 export const handleEditClick = (admin, setEditingAdmin) => {
     setEditingAdmin(admin);
 };
 
-export const handleSaveClick = async (id, editingAdmin, currentPage, setAdmins, setEditingAdmin) => {
+export const handleSaveClick = async (id, editingAdmin, currentPage,
+    setAdmins, setEditingAdmin) => {
     try {
         const updatedAdmin = {
             id,
             username: editingAdmin.username,
-            password: editingAdmin.password,
             fullname: editingAdmin.fullname,
             is_active: editingAdmin.is_active
         };

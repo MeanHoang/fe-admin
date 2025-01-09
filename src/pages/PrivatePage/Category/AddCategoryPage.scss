@@ -1,0 +1,52 @@
+$primary-color: #007bff;
+$secondary-color: #343a40;
+$font-family: 'Arial, sans-serif';
+$white-color: #ffffff;
+$icon-color: #505050;
+
+.dashboard-page {
+    display: flex;
+
+    .navbar {
+        transition: all 0.3s ease;
+
+        &.closed {
+            width: 0;
+            overflow: hidden;
+        }
+
+        &.open {
+            width: 250px;
+        }
+    }
+
+    .content {
+        flex-grow: 1;
+        padding: 20px;
+
+        .toggle-navbar-btn {
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+            color: $icon-color;
+
+            &:hover {
+                color: $primary-color;
+            }
+        }
+
+        a {
+            color: $primary-color;
+            text-decoration: none;
+            margin-top: 10px;
+            display: block;
+            margin-bottom: 10px;
+            /* Adjust this to increase/decrease the gap */
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+
+}

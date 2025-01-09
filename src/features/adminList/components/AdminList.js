@@ -78,7 +78,8 @@ const AdminList = () => {
     };
 
     const handleSaveClickWrapper = async (id) => {
-        await handleSaveClick(id, editingAdmin, currentPage, setAdmins, setEditingAdmin);
+        await handleSaveClick(id, editingAdmin, currentPage, setAdmins,
+            setEditingAdmin);
     };
 
     const handleDeleteClickWrapper = async (id) => {

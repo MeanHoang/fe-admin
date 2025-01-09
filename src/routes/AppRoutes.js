@@ -7,6 +7,8 @@ import DashboardPage from "../pages/PrivatePage/Dashboard/DashboardPage";
 import ManageAdminPage from "../pages/PrivatePage/Admin/ManageAdminPage";
 import RegisterPage from "../pages/PrivatePage/Admin/RegisterPage";
 import ManageUserPage from "../pages/PrivatePage/User/ManageUserPage";
+import ManageCategoryPage from "../pages/PrivatePage/Category/ManageCategoryPage";
+import AddCategoryPage from "../pages/PrivatePage/Category/AddCategoryPage";
 
 const AppRoutes = () => {
     return (
@@ -17,10 +19,15 @@ const AppRoutes = () => {
             {/* Route bảo vệ */}
             <Route element={<PrivateRoutes />}>
                 <Route path="/dashboard" element={<DashboardPage />} />
+
                 <Route path="/manage-admin" element={<ManageAdminPage />} />
+                <Route path="/reg" element={<RegisterPage />} />
+
                 <Route path="/manage-user" element={<ManageUserPage />} />
 
-                <Route path="/reg" element={<RegisterPage />} />
+                <Route path="/manage-category" element={<ManageCategoryPage />} />
+                <Route path="/add-category" element={<AddCategoryPage />} />
+
 
             </Route>
         </Routes>
