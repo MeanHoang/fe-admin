@@ -16,7 +16,7 @@ const CategoryList = () => {
     const [categories, setCategories] = useState([]);
     const [totalPages, setTotalPages] = useState(1);
     const [currentPage, setCurrentPage] = useState(1);
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
 
     const [editingCategory, setEditingCategory] = useState(null);
@@ -48,6 +48,8 @@ const CategoryList = () => {
                 } else if (currentPage > pages) {
                     setCurrentPage(pages);
                 }
+
+                setLoading(false);
 
             } catch (error) {
                 setError(error.response?.data?.message || "Đã xảy ra lỗi khi tải dữ liệu.");

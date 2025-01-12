@@ -9,6 +9,7 @@ import RegisterPage from "../pages/PrivatePage/Admin/RegisterPage";
 import ManageUserPage from "../pages/PrivatePage/User/ManageUserPage";
 import ManageCategoryPage from "../pages/PrivatePage/Category/ManageCategoryPage";
 import AddCategoryPage from "../pages/PrivatePage/Category/AddCategoryPage";
+import ManageAttribuePage from "../pages/PrivatePage/Attribute/ManageAttributePage";
 
 const AppRoutes = () => {
     return (
@@ -27,6 +28,8 @@ const AppRoutes = () => {
 
                 <Route path="/manage-category" element={<ManageCategoryPage />} />
                 <Route path="/add-category" element={<AddCategoryPage />} />
+
+                <Route path="/manage-attribute" element={<ManageAttribuePage />} />
 
 
             </Route>

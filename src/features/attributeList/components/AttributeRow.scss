@@ -1,0 +1,121 @@
+// Biến màu sắc và kích thước
+$primary-color: #007bff; // Màu chính cho nút "Cập nhật"
+$primary-hover-color: #0056b3; // Màu hover cho nút "Cập nhật"
+
+$danger-color: #dc3545; // Màu chính cho nút "Xóa"
+$danger-hover-color: #a71d2a; // Màu hover cho nút "Xóa"
+
+$success-color: #28a745; // Màu chính cho nút "Lưu"
+$success-hover-color: #1e7e34; // Màu hover cho nút "Lưu"
+
+$reset-color: #ede730; // Màu chính cho nút "Đặt lại"
+$reset-hover-color: #7b8a3a; // Màu hover cho nút "Đặt lại"
+
+$text-color: #ffffff; // Màu chữ
+$border-radius: 4px; // Độ bo tròn của nút
+$font-size: 14px; // Kích thước chữ
+$padding: 8px 12px; // Padding cho nút
+$button-spacing: 10px; // Khoảng cách giữa các nút
+
+// Phong cách chung cho bảng
+td {
+    padding: 12px;
+    text-align: left;
+    border: 1px solid #ddd;
+    font-size: 14px;
+
+    &:nth-child(even) {
+        background-color: #f2f2f2; // Hiệu ứng cho hàng chẵn
+    }
+}
+
+tr:hover {
+    background-color: #f1f1f1; // Hiệu ứng hover cho hàng
+}
+
+// Phong cách chung cho nút
+button {
+    font-size: $font-size;
+    padding: $padding;
+    border-radius: $border-radius;
+    border: none;
+    cursor: pointer;
+    color: $text-color;
+    transition: all 0.3s ease;
+    display: inline-block;
+    margin-right: $button-spacing; // Khoảng cách giữa các nút
+
+    &:last-child {
+        margin-right: 0; // Không có khoảng cách cho nút cuối cùng
+    }
+
+    &:focus {
+        outline: none;
+    }
+}
+
+// Nút "Cập nhật"
+.update-button {
+    background-color: $primary-color;
+
+    &:hover {
+        background-color: $primary-hover-color;
+    }
+}
+
+// Nút "Xóa"
+.delete-button {
+    background-color: $danger-color;
+
+    &:hover {
+        background-color: $danger-hover-color;
+    }
+}
+
+// Nút "Lưu"
+.save-button {
+    background-color: $success-color;
+
+    &:hover {
+        background-color: $success-hover-color;
+    }
+}
+
+// Nút "Đặt lại"
+.reset-button {
+    background-color: $reset-color;
+
+    &:hover {
+        background-color: $reset-hover-color;
+    }
+}
+
+// Toggle Switch
+.toggle-switch {
+    width: 50px;
+    height: 25px;
+    background-color: #ccc;
+    border-radius: 15px;
+    position: relative;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+
+    &.active {
+        background-color: $success-color;
+    }
+
+    .switch {
+        width: 21px;
+        height: 21px;
+        background-color: #fff;
+        border-radius: 50%;
+        position: absolute;
+        top: 2px;
+        left: 2px;
+        transition: transform 0.3s ease;
+
+        .toggle-switch.active & {
+            transform: translateX(25px);
+        }
+    }
+}
