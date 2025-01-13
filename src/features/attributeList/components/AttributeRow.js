@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 import './AttributeRow.scss';
 const AttributeRow = ({
@@ -7,6 +8,11 @@ const AttributeRow = ({
     handleSaveClickWrapper,
     handleDeleteClickWrapper,
 }) => {
+    const navigate = useNavigate();
+    const gotoManageAttributeOption = (id) => {
+        navigate(`/attribute/${id}`);
+    };
+
     return (
         <tr key={attribute.id}>
             <td>{attribute.id}</td>
@@ -45,7 +51,13 @@ const AttributeRow = ({
 
                 <button className="delete-button" onClick={() => handleDeleteClickWrapper(attribute.id)}>Xóa</button>
 
-                <button>Chi tiết</button>
+                <button
+                    className="detail-button"
+                    onClick={() => gotoManageAttributeOption(attribute.id)}
+                >
+                    Chi tiết
+                </button>
+
             </td>
         </tr>
     )

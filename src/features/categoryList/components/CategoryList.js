@@ -60,8 +60,8 @@ const CategoryList = () => {
         fetchCategory();
     }, [currentPage, searchTerm]);
 
-    const handleEditClickWrapper = (admin) => {
-        handleEditClick(admin, setEditingCategory);
+    const handleEditClickWrapper = (a) => {
+        handleEditClick(a, setEditingCategory);
     };
 
     const handleSaveClickWrapper = async (id) => {
