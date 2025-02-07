@@ -51,7 +51,7 @@ const AttributeOptionList = (attributeId) => {
         console.log("check attributeId: ", attributeId);
 
         fetchAttributeOption(attribute_id);
-    }, [[attribute_id]])
+    }, [attribute_id])
 
     const handleAddAttributeOption = async (attributeOption) => {
         try {

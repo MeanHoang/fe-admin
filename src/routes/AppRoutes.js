@@ -11,6 +11,10 @@ import ManageCategoryPage from "../pages/PrivatePage/Category/ManageCategoryPage
 import AddCategoryPage from "../pages/PrivatePage/Category/AddCategoryPage";
 import ManageAttribuePage from "../pages/PrivatePage/Attribute/ManageAttributePage";
 import AttributeDetailPage from "../pages/PrivatePage/Attribute/AttributeDetailPage";
+import ProductDetailPage from "../pages/PrivatePage/Product/ProductDetailPage";
+import AddProdutPage from "../pages/PrivatePage/Product/AddProductPage";
+
+
 
 const AppRoutes = () => {
     return (
@@ -32,6 +36,10 @@ const AppRoutes = () => {
 
                 <Route path="/manage-attribute" element={<ManageAttribuePage />} />
                 <Route path="/attribute/:id" element={<AttributeDetailPage />} />
+
+                <Route path="/product/create" element={<AddProdutPage />} />
+                <Route path="/product/:id" element={<ProductDetailPage />} />
+
 
             </Route>
         </Routes>
