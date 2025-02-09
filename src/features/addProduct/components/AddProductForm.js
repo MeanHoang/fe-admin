@@ -1,9 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 
-import { createProduct } from "../services/createProduct";
+import {
+    fetchCategories,
+    handleChange,
+    handleImageChange,
+    handleSubmit
+} from "../actions/AddProductFormAction"
 
 import './AddProductForm.scss';
 
@@ -18,149 +23,123 @@ const AddProductForm = () => {
         material: "",
         is_sale: false,
     });
+    const [categories, setCategories] = useState([]);
+
     const [image, setImage] = useState(null);
 
+    const [isSubmitting, setIsSubmitting] = useState(false);
 
-    // Xử lý thay đổi dữ liệu trong form
-    const handleChange = (e) => {
-        const { name, value, type, checked } = e.target;
-        setFormData({
-            ...formData,
-            [name]: type === "checkbox" ? checked : value,
-        });
-    };
+    const [imagePreview, setImagePreview] = useState(null);
 
-    // Xử lý khi chọn ảnh
-    const handleImageChange = (e) => {
-        const selectedFile = e.target.files[0];
-        if (selectedFile) {
-            const fileType = selectedFile.type;
-            if (fileType !== "image/jpeg" && fileType !== "image/png"
-                && fileType !== "image/jpg"
-            ) {
-                toast.error("Chỉ chấp nhận ảnh .jpg hoặc .png!");
-                return;
-            }
-            if (selectedFile.size > 5 * 1024 * 1024) {
-                toast.error("Ảnh quá lớn. Vui lòng chọn ảnh dưới 5MB!");
-                return;
-            }
-            setImage(selectedFile);
-        }
-    };
+    useEffect(() => {
+        fetchCategories(setCategories);
+    }, []);
 
-    // Xử lý khi submit form
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-
-        try {
-            if (!image) {
-                toast.error("Vui lòng chọn một ảnh!");
-                return;
-            }
-
-            // Gửi dữ liệu đến API
-            const response = await createProduct(formData, image);
-
-            toast.success("Thêm sản phẩm thành công!");
-            navigate("/products"); // Điều hướng về danh sách sản phẩm
-        } catch (error) {
-            console.error("Error in AddProductForm:", error);
-            toast.error("Thêm sản phẩm thất bại. Vui lòng thử lại!");
-        }
-    };
 
     return (
-        <div className="add-product-form">
+        <div>
             <h2>Thêm sản phẩm mới</h2>
-            <form onSubmit={handleSubmit}>
-                <div className="form-group">
-                    <label>Danh mục sản phẩm:</label>
-                    <input
-                        type="text"
-                        name="category_id"
-                        value={formData.category_id}
-                        onChange={handleChange}
-                        placeholder="Nhập ID danh mục"
-                        required
-                    />
+            <form onSubmit={(e) => handleSubmit(e, formData, image, setIsSubmitting, navigate)}>
+
+                <div className="row-1">
+                    <div className="form-group">
+                        <label>Tên sản phẩm:</label>
+                        <input
+                            type="text"
+                            name="name"
+                            value={formData.name}
+                            onChange={handleChange}
+                            placeholder="Tên sản phẩm"
+                            required
+                        />
+                    </div>
+                    <div className="form-group">
+                        <label>Gía tiền:</label>
+                        <input
+                            type="number"
+                            name="price"
+                            value={formData.price}
+                            onChange={handleChange}
+                            placeholder="Giá tiền"
+                            required
+                        />
+                    </div>
                 </div>
-                <div className="form-group">
-                    <label>Tên sản phẩm:</label>
-                    <input
-                        type="text"
-                        name="name"
-                        value={formData.name}
-                        onChange={handleChange}
-                        placeholder="Nhập tên sản phẩm"
-                        required
-                    />
+
+                <div className="row-2">
+                    <div className="form-group">
+                        <label>Danh mục sản phẩm:</label>
+                        <select
+                            name="category_id"
+                            value={formData.category_id}
+                            onChange={handleChange}
+                        >
+                            <option value="">Chọn danh mục</option>
+                            {categories.map((category) => (
+                                <option key={category.id} value={category.id}>
+                                    {category.name}
+                                </option>
+                            ))}
+                        </select>
+                    </div>
                 </div>
+
                 <div className="form-group">
                     <label>Mô tả:</label>
                     <textarea
                         name="desc"
                         value={formData.desc}
                         onChange={handleChange}
-                        placeholder="Nhập mô tả sản phẩm"
-                        required
+                        placeholder="Mô tả"
                     ></textarea>
                 </div>
-                <div className="form-group">
-                    <label>Giá sản phẩm:</label>
-                    <input
-                        type="number"
-                        name="price"
-                        value={formData.price}
-                        onChange={handleChange}
-                        placeholder="Nhập giá sản phẩm"
-                        required
-                    />
-                </div>
-                <div className="form-group">
-                    <label>Xuất xứ:</label>
-                    <input
-                        type="text"
-                        name="origin"
-                        value={formData.origin}
-                        onChange={handleChange}
-                        placeholder="Nhập xuất xứ sản phẩm"
-                    />
-                </div>
-                <div className="form-group">
-                    <label>Chất liệu:</label>
-                    <input
-                        type="text"
-                        name="material"
-                        value={formData.material}
-                        onChange={handleChange}
-                        placeholder="Nhập chất liệu sản phẩm"
-                    />
-                </div>
-                <div className="form-group">
-                    <label>
-                        Đang giảm giá:
+
+                <div className="row-3">
+                    <div className="form-group">
+                        <label>Xuất xứ:</label>
                         <input
-                            type="checkbox"
-                            name="is_sale"
-                            checked={formData.is_sale}
+                            type="text"
+                            name="origin"
+                            value={formData.origin}
                             onChange={handleChange}
+                            placeholder="Xuất xứ"
                         />
-                    </label>
+                    </div>
+                    <div className="form-group">
+                        <label>Chất liệu:</label>
+                        <input
+                            type="text"
+                            name="material"
+                            value={formData.material}
+                            onChange={handleChange}
+                            placeholder="Chất liệu"
+                        />
+                    </div>
                 </div>
-                <div className="form-group">
-                    <label>Hình ảnh sản phẩm:</label>
-                    <input
-                        type="file"
-                        onChange={handleImageChange}
-                        accept="image/*"
-                        required
-                    />
+
+                <div className="row-4">
+                    <div className="form-group">
+                        <label>Hình ảnh sản phẩm:</label>
+                        <input
+                            type="file"
+                            onChange={(e) => handleImageChange(e, setImage, setImagePreview)}
+                            accept="image/*"
+                            required
+                        />
+                    </div>
+                    {imagePreview && (
+                        <div className="image-preview">
+                            <p>Ảnh xem trước:</p>
+                            <img src={imagePreview} alt="Xem trước" />
+                        </div>
+                    )}
                 </div>
+
                 <button type="submit" className="submit-btn">
                     Thêm sản phẩm
                 </button>
             </form>
+
             <ToastContainer />
         </div>
     );

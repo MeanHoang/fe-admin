@@ -15,6 +15,8 @@ import ProductDetailPage from "../pages/PrivatePage/Product/ProductDetailPage";
 import AddProdutPage from "../pages/PrivatePage/Product/AddProductPage";
 
 
+import NotFoundPage from "../pages/PublicPage/NotFoundPage";
+
 
 const AppRoutes = () => {
     return (
@@ -42,6 +44,8 @@ const AppRoutes = () => {
 
 
             </Route>
+
+            <Route path="*" element={<NotFoundPage />} />
         </Routes>
     );
 };

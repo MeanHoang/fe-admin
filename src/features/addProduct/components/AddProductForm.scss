@@ -1,50 +1,79 @@
-.add-product-form {
-    max-width: 500px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #f9f9f9;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
+    h2 {
+        text-align: center;
+        margin-bottom: 10px;
+    }
 
-h2 {
-    text-align: center;
-    margin-bottom: 20px;
-}
+    .form-group {
+        margin-bottom: 15px;
+        display: flex;
+        flex: 1;
+        flex-direction: column;
 
-.form-group {
-    margin-bottom: 15px;
-}
+        label {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
 
-.form-group label {
-    font-weight: bold;
-    display: block;
-    margin-bottom: 5px;
-}
+        input,
+        select,
+        textarea {
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 100%;
+            font-size: normal;
+        }
+    }
 
-.form-group input,
-.form-group textarea {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-}
+    // Hàng 1: Tên sản phẩm & Giá tiền
+    .row-1,
+    .row-3 {
+        display: flex;
+        gap: 20px;
+        align-items: center;
 
-.form-group input[type="file"] {
-    padding: 5px;
-}
+        .form-group {
+            flex: 1;
+            min-width: 0; // Cho phép co giãn
+        }
+    }
 
-.btn-submit {
-    width: 100%;
-    padding: 10px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px;
-}
+    // Hàng 2: Danh mục sản phẩm
+    .row-2 .form-group {
+        width: 105%;
+    }
 
-.btn-submit:hover {
-    background-color: #0056b3;
-}
+    // Hàng cuối: Hình ảnh sản phẩm + Xem trước ảnh
+    .row-4 {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+
+        .image-preview {
+            margin-bottom: 5px;
+
+            img {
+                max-width: 150px;
+                height: auto;
+                border-radius: 5px;
+                border: 1px solid #ddd;
+            }
+        }
+    }
+
+    .submit-btn {
+        width: 100%;
+        padding: 10px;
+        background: #007bff;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: 0.3s;
+
+        &:hover {
+            background: #0056b3;
+        }
+    }
