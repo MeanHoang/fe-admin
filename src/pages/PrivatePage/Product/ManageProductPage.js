@@ -1,17 +1,24 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { MdMenu } from "react-icons/md";
 
 import Navbar from "../../../components/NavBar";
-import './ProductDetailPage.scss';
+import './ManageProductPage.scss';
 
-import ProductDetailForm from "../../../features/productDetail/components/ProductDetailForm";
+import ProductList from "../../../features/productList/componments/ProductList";
 
-const ProductDetailPage = () => {
+const ManageProductPage = () => {
     const navigate = useNavigate();
 
     const [navbarStatus, setNavbarStatus] = useState(true);
 
+    const gotoAddProductPage = () => {
+        navigate("/add-product");
+    };
+
+    const handleToggleNavbar = () => {
+        setNavbarStatus(!navbarStatus);
+    };
     useEffect(() => {
         const checkToken = async () => {
             const token = localStorage.getItem("token");
@@ -24,11 +31,6 @@ const ProductDetailPage = () => {
         checkToken();
     }, []);
 
-    const handleToggleNavbar = () => {
-        setNavbarStatus(!navbarStatus);
-    };
-
-    const { id } = useParams();
 
     return (
         <div className="dashboard-page">
@@ -40,11 +42,15 @@ const ProductDetailPage = () => {
                     <MdMenu size={24} />
                 </button>
 
-                <ProductDetailForm productId={id} />
+                <ProductList className="product-list" />
+
+                <a href="#" onClick={gotoAddProductPage}>
+                    Thêm sản phẩm
+                </a>
 
             </div>
         </div>
     );
 };
 
-export default ProductDetailPage;
+export default ManageProductPage;

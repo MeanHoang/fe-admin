@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 
 import {
@@ -8,7 +8,7 @@ import {
     handleChange,
     handleImageChange,
     handleSubmit
-} from "../actions/AddProductFormAction"
+} from "../actions/AddProductFormAction";
 
 import './AddProductForm.scss';
 
@@ -20,26 +20,22 @@ const AddProductForm = () => {
         desc: "",
         price: "",
         origin: "",
-        material: "",
-        is_sale: false,
+        material: ""
     });
     const [categories, setCategories] = useState([]);
-
     const [image, setImage] = useState(null);
-
     const [isSubmitting, setIsSubmitting] = useState(false);
-
     const [imagePreview, setImagePreview] = useState(null);
 
     useEffect(() => {
         fetchCategories(setCategories);
     }, []);
 
-
     return (
         <div>
             <h2>Thêm sản phẩm mới</h2>
-            <form onSubmit={(e) => handleSubmit(e, formData, image, setIsSubmitting, navigate)}>
+            <form onSubmit={(e) =>
+                handleSubmit(e, formData, image, isSubmitting, setIsSubmitting, navigate)}>
 
                 <div className="row-1">
                     <div className="form-group">
@@ -48,7 +44,7 @@ const AddProductForm = () => {
                             type="text"
                             name="name"
                             value={formData.name}
-                            onChange={handleChange}
+                            onChange={(e) => handleChange(e, formData, setFormData)}
                             placeholder="Tên sản phẩm"
                             required
                         />
@@ -59,7 +55,7 @@ const AddProductForm = () => {
                             type="number"
                             name="price"
                             value={formData.price}
-                            onChange={handleChange}
+                            onChange={(e) => handleChange(e, formData, setFormData)}
                             placeholder="Giá tiền"
                             required
                         />
@@ -72,7 +68,7 @@ const AddProductForm = () => {
                         <select
                             name="category_id"
                             value={formData.category_id}
-                            onChange={handleChange}
+                            onChange={(e) => handleChange(e, formData, setFormData)}
                         >
                             <option value="">Chọn danh mục</option>
                             {categories.map((category) => (
@@ -89,7 +85,7 @@ const AddProductForm = () => {
                     <textarea
                         name="desc"
                         value={formData.desc}
-                        onChange={handleChange}
+                        onChange={(e) => handleChange(e, formData, setFormData)}
                         placeholder="Mô tả"
                     ></textarea>
                 </div>
@@ -101,7 +97,7 @@ const AddProductForm = () => {
                             type="text"
                             name="origin"
                             value={formData.origin}
-                            onChange={handleChange}
+                            onChange={(e) => handleChange(e, formData, setFormData)}
                             placeholder="Xuất xứ"
                         />
                     </div>
@@ -111,7 +107,7 @@ const AddProductForm = () => {
                             type="text"
                             name="material"
                             value={formData.material}
-                            onChange={handleChange}
+                            onChange={(e) => handleChange(e, formData, setFormData)}
                             placeholder="Chất liệu"
                         />
                     </div>
@@ -135,8 +131,8 @@ const AddProductForm = () => {
                     )}
                 </div>
 
-                <button type="submit" className="submit-btn">
-                    Thêm sản phẩm
+                <button type="submit" className="submit-btn" disabled={isSubmitting}>
+                    {isSubmitting ? "Đang thêm..." : "Thêm sản phẩm"}
                 </button>
             </form>
 

@@ -41,20 +41,21 @@ export const handleImageChange = (e, setImage, setImagePreview) => {
 };
 
 // Xử lý submit form
-export const handleSubmit = async (e, formData, image, setIsSubmitting, navigate) => {
+export const handleSubmit = async (e, formData, image, isSubmitting, setIsSubmitting, navigate) => {
     e.preventDefault();
+    console.log("Submit form");
 
     if (!image) {
         toast.error("Vui lòng chọn một ảnh!");
         return;
     }
 
-    if (setIsSubmitting) return;
+    if (isSubmitting) return;
     setIsSubmitting(true);
 
     try {
-        await createProduct(formData, image);
-        toast.success("Thêm sản phẩm thành công!");
+        const respone = await createProduct(formData, image);
+        toast.success(respone.message);
         navigate("/manage-product");
     } catch (error) {
         console.error("Lỗi khi thêm sản phẩm:", error);

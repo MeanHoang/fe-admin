@@ -13,7 +13,7 @@ import ManageAttribuePage from "../pages/PrivatePage/Attribute/ManageAttributePa
 import AttributeDetailPage from "../pages/PrivatePage/Attribute/AttributeDetailPage";
 import ProductDetailPage from "../pages/PrivatePage/Product/ProductDetailPage";
 import AddProdutPage from "../pages/PrivatePage/Product/AddProductPage";
-
+import ManageProductPage from "../pages/PrivatePage/Product/ManageProductPage";
 
 import NotFoundPage from "../pages/PublicPage/NotFoundPage";
 
@@ -39,7 +39,8 @@ const AppRoutes = () => {
                 <Route path="/manage-attribute" element={<ManageAttribuePage />} />
                 <Route path="/attribute/:id" element={<AttributeDetailPage />} />
 
-                <Route path="/product/create" element={<AddProdutPage />} />
+                <Route path="/manage-product" element={<ManageProductPage />} />
+                <Route path="/add-product" element={<AddProdutPage />} />
                 <Route path="/product/:id" element={<ProductDetailPage />} />
 
 

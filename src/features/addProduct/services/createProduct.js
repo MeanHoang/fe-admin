@@ -14,7 +14,6 @@ export const createProduct = async (data, imageFile) => {
         formData.append('category_id', data.category_id ? data.category_id : null);
         formData.append('image', imageFile);
 
-
         const token = localStorage.getItem("token");
 
         // Log formData để kiểm tra xem dữ liệu có đầy đủ chưa
