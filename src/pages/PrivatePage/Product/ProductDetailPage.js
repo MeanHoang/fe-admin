@@ -6,6 +6,7 @@ import Navbar from "../../../components/NavBar";
 import './ProductDetailPage.scss';
 
 import ProductDetailForm from "../../../features/productDetail/components/ProductDetailForm";
+import SkuList from "../../../features/skuList/components/SkuList";
 
 const ProductDetailPage = () => {
     const navigate = useNavigate();
@@ -42,6 +43,7 @@ const ProductDetailPage = () => {
 
                 <ProductDetailForm productId={id} />
 
+                <SkuList productId={id} />
             </div>
         </div>
     );
